@@ -10,7 +10,7 @@
       <div class="flex-1" />
 
       <UTooltip text="GitHub repository">
-        <UButton color="gray" variant="ghost" icon="i-tabler-brand-github" />
+        <UButton color="gray" variant="ghost" icon="i-tabler-brand-github" href="https://github.com/CorentinTh/deviz" target="_blank" />
       </UTooltip>
     </UContainer>
   </div>
