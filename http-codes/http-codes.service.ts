@@ -38,7 +38,7 @@ function getHttpCodeQuestions(): {
     }));
 
     return {
-      question: 'Which of the following is the correct HTTP status code for this code?',
+      question: 'Which of the following is the correct HTTP status for this code?',
       heading: httpStatus.code.toString(),
       answers: _.shuffle([correctAnswer, ...wrongAnswers]),
       explanation: {
