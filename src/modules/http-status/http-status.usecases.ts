@@ -24,11 +24,13 @@ function getHttpCodeQuestions({ questionCount }: { questionCount: number }): Que
     const correctAnswer = {
       label: httpStatus.name,
       isCorrect: true,
+      explanation: `${httpStatus.code} - ${httpStatus.name}`,
     };
 
     const wrongAnswers = takeUniqueRandoms(httpStatuses, { count: 3, excludeBy: (status) => status.code === httpStatus.code }).map((status) => ({
       label: status.name,
       isCorrect: false,
+      explanation: `${status.code} - ${status.name}`,
     }));
 
     return {
@@ -52,11 +54,13 @@ function getHttpNameQuestions({ questionCount }: { questionCount: number }): Que
     const correctAnswer = {
       label: httpStatus.code.toString(),
       isCorrect: true,
+      explanation: `${httpStatus.code} - ${httpStatus.name}`,
     };
 
     const wrongAnswers = takeUniqueRandoms(httpStatuses, { count: 3, excludeBy: (status) => status.code === httpStatus.code }).map((status) => ({
       label: status.code.toString(),
       isCorrect: false,
+      explanation: `${status.code} - ${status.name}`,
     }));
 
     return {

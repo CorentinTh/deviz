@@ -35,7 +35,7 @@ const { currentQuestion, selectAnswer, isAnswered, selectedAnswer, goToNextQuest
             class="transition"
             :color="isAnswered ? (answer.isCorrect ? 'green' : selectedAnswer === answer ? 'red' : 'primary') : 'primary'"
           >
-            {{ answer.label }}
+            {{ isAnswered ? answer.explanation ?? answer.label : answer.label }}
           </UButton>
         </div>
 

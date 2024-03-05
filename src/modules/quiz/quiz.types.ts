@@ -1,6 +1,7 @@
 export type QuestionAnswer = {
   label: string;
   isCorrect: boolean;
+  explanation?: string;
 };
 
 export type Question = {
