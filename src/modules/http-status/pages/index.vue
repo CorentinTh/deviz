@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { getHttpCodeQuestions } from '../http-status.usecases';
+import { getHttpQuestions } from '../http-status.usecases';
 
 const questionCount = 10;
 
 const { currentQuestion, selectAnswer, isAnswered, selectedAnswer, goToNextQuestion, isFinished, reset, score, progress, currentQuestionIndex } = useQuiz({
-  questionsBuilder: getHttpCodeQuestions,
+  questionsBuilder: getHttpQuestions,
   questionCount,
 });
 </script>
