@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 export const codesByCategories: {
   category: string;
   codes: {
@@ -413,5 +411,3 @@ export const codesByCategories: {
     ],
   },
 ];
-
-export const codesQuestionPool = _.chain(codesByCategories).map('codes').flatten().filter({ type: 'HTTP' }).value();

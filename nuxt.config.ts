@@ -1,5 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  extends: ['src/modules/quiz', 'src/modules/http-status'],
+
   devtools: { enabled: true },
 
   modules: ['@nuxt/ui', '@nuxtjs/seo', '@nuxtjs/fontaine', '@vueuse/nuxt', '@nuxtjs/google-fonts', '@pinia/nuxt', '@nuxtjs/plausible'],

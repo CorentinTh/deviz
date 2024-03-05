@@ -1,39 +1,9 @@
 <script setup lang="ts">
-import { getHttpCodeQuestions } from '../http-codes/http-codes.service';
+import { getHttpCodeQuestions } from '../http-status.usecases';
 
-const questions = ref(getHttpCodeQuestions());
-
-const currentQuestionIndex = ref(0);
-const currentQuestion = computed(() => questions.value[currentQuestionIndex.value]);
-const isAnswered = ref(false);
-const selectedAnswer = ref<{
-  label: string;
-  isCorrect: boolean;
-}>();
-
-function handleAnswer({
-  answer,
-}: {
-  answer: {
-    label: string;
-    isCorrect: boolean;
-  };
-}) {
-  isAnswered.value = true;
-  selectedAnswer.value = answer;
-}
-
-function handleNext() {
-  isAnswered.value = false;
-  selectedAnswer.value = undefined;
-
-  if (currentQuestionIndex.value < questions.value.length - 1) {
-    currentQuestionIndex.value++;
-  } else {
-    currentQuestionIndex.value = 0;
-    questions.value = getHttpCodeQuestions();
-  }
-}
+const { currentQuestion, selectAnswer, isAnswered, selectedAnswer, goToNextQuestion } = useQuiz({
+  questionsBuilder: getHttpCodeQuestions,
+});
 </script>
 
 <template>
@@ -47,7 +17,7 @@ function handleNext() {
           <UButton
             v-for="(answer, index) in currentQuestion.answers"
             :key="index"
-            :onClick="() => handleAnswer({ answer })"
+            :onClick="() => selectAnswer({ answer })"
             :disabled="isAnswered"
             size="lg"
             class="transition"
@@ -69,7 +39,7 @@ function handleNext() {
           </UCard>
 
           <div class="flex justify-end">
-            <UButton @click="handleNext" size="lg" color="orange" trailingIcon="i-tabler-arrow-right"> Next </UButton>
+            <UButton @click="goToNextQuestion" size="lg" color="orange" trailingIcon="i-tabler-arrow-right"> Next </UButton>
           </div>
         </div>
 
