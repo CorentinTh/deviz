@@ -5,7 +5,7 @@
         <span>© {{ new Date().getFullYear() }} Deviz</span>
         <span class="mx-2">•</span>
         <span>Developed by </span>
-        <UButton label="Corentin Thomasset" color="gray-500" variant="link" to="https://corentin-thomasset.fr" target="_blank" :padded="false" />
+        <UButton label="Corentin Thomasset" color="gray-500" variant="link" to="https://corentin.tech" target="_blank" :padded="false" />
       </div>
     </UContainer>
   </div>
