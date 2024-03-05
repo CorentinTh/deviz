@@ -1,7 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@nuxtjs/seo', '@nuxtjs/fontaine', '@vueuse/nuxt', '@nuxtjs/google-fonts', '@pinia/nuxt'],
+
+  modules: ['@nuxt/ui', '@nuxtjs/seo', '@nuxtjs/fontaine', '@vueuse/nuxt', '@nuxtjs/google-fonts', '@pinia/nuxt', '@nuxtjs/plausible'],
 
   ui: {
     icons: ['tabler', 'mdi'],
@@ -20,5 +21,10 @@ export default defineNuxtConfig({
 
   colorMode: {
     preference: 'dark',
+  },
+
+  plausible: {
+    enabled: false,
+    ignoredHostnames: ['localhost'],
   },
 });
