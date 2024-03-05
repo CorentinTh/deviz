@@ -10,6 +10,7 @@ function useQuiz({ questionsBuilder: createQuestions, questionCount = 10 }: { qu
   const selectedAnswer = ref<QuestionAnswer | undefined>(undefined);
   const state = ref<'answering' | 'answered' | 'finished'>('answering');
   const score = ref(0);
+  const progress = computed(() => (currentQuestionIndex.value / questions.value.length) * 100);
 
   const selectAnswer = ({ answer }: { answer: QuestionAnswer }) => {
     if (answer.isCorrect) {
@@ -30,14 +31,25 @@ function useQuiz({ questionsBuilder: createQuestions, questionCount = 10 }: { qu
     }
   };
 
+  const reset = () => {
+    questions.value = createQuestions({ questionCount: get(questionCount) });
+    currentQuestionIndex.value = 0;
+    selectedAnswer.value = undefined;
+    state.value = 'answering';
+    score.value = 0;
+  };
+
   return {
     questions,
     currentQuestion,
+    currentQuestionIndex,
     selectedAnswer,
     state,
     score,
     selectAnswer,
     goToNextQuestion,
+    reset,
+    progress,
     isAnswered: computed(() => state.value === 'answered'),
     isFinished: computed(() => state.value === 'finished'),
     isAnswering: computed(() => state.value === 'answering'),

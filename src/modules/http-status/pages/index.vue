@@ -1,15 +1,27 @@
 <script setup lang="ts">
 import { getHttpCodeQuestions } from '../http-status.usecases';
 
-const { currentQuestion, selectAnswer, isAnswered, selectedAnswer, goToNextQuestion } = useQuiz({
+const questionCount = 10;
+
+const { currentQuestion, selectAnswer, isAnswered, selectedAnswer, goToNextQuestion, isFinished, reset, score, progress, currentQuestionIndex } = useQuiz({
   questionsBuilder: getHttpCodeQuestions,
+  questionCount,
 });
 </script>
 
 <template>
   <div class="flex flex-col items-center justify-center">
     <div class="flex flex-col items-center max-w-md text-center mt-12">
-      <ClientOnly>
+      <div v-if="isFinished">
+        <score-panel :score="score" :total="questionCount" />
+
+        <UButton @click="reset" size="lg" color="primary" trailingIcon="i-tabler-arrow-right"> Try again </UButton>
+      </div>
+
+      <ClientOnly v-else>
+        <UProgress :value="progress" class="w-full mb-4" />
+        <div class="text-gray-400 mb-4">Question {{ currentQuestionIndex + 1 }} of {{ questionCount }}</div>
+
         <h1 class="text-xl text-neutral-300">{{ currentQuestion.question }}</h1>
         <h2 class="text-4xl font-bold my-10">{{ currentQuestion.heading }}</h2>
 
