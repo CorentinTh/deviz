@@ -2,7 +2,7 @@
 
 WIP
 
-A minimal and simple quiz web app for devs.
+A minimal and simple quiz web app for devs -> [deviz.corentin.tech](https://deviz.vercel.app)
 
 ## Setup
 
