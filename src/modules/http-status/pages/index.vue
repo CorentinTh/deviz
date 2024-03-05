@@ -62,6 +62,9 @@ const { currentQuestion, selectAnswer, isAnswered, selectedAnswer, goToNextQuest
         </div>
 
         <template #fallback>
+          <h1 class="sr-only">HTTP Status codes quiz</h1>
+          <p class="sr-only">Test your knowledge of HTTP status codes with this online quiz.</p>
+
           <USkeleton class="h-4 w-[300px]" />
           <USkeleton class="h-4 w-[150px] mt-4" />
           <USkeleton class="h-8 w-[100px] my-10" />
