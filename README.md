@@ -1,8 +1,10 @@
+![App screenshot](./.github/deviz-screenshot.png)
+
 # Deviz
 
 WIP
 
-A minimal and simple quiz web app for devs -> [deviz.corentin.tech](https://deviz.vercel.app)
+A minimal and simple quiz web app for devs -> [deviz.vercel.app](https://deviz.vercel.app)
 
 ## Setup
 
