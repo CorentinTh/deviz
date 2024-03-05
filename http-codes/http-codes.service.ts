@@ -15,9 +15,7 @@ function getHttpCodeQuestions(): {
     description: string;
   };
 }[] {
-  const sampleSize = 5;
-
-  const codes = _.sampleSize(codesQuestionPool, sampleSize);
+  const codes = _.shuffle(codesQuestionPool);
   const getRandomCodes = ({ exclude, count = 3 }: { exclude: number; count?: number }) => {
     return _.chain(codesQuestionPool)
       .shuffle()
