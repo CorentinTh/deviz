@@ -1,6 +1,6 @@
 <template>
   <div class="border-t border-gray-800">
-    <UContainer class="text-gray-500 text-sm h-16 flex items-center justify-center">
+    <UContainer class="text-gray-500 text-sm h-24 flex items-center justify-center">
       <div>
         <span>© {{ new Date().getFullYear() }} Deviz</span>
         <span class="mx-2">•</span>
