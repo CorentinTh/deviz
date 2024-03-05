@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { getHttpQuestions } from '../http-status.usecases';
 
+defineOgImageComponent('base-og-image', {
+  title: 'HTTP Status Quiz',
+  description: 'Test your knowledge of HTTP status codes with this online quiz.',
+  icon: 'i-tabler-terminal-2',
+});
+
 const questionCount = 10;
 
 const { currentQuestion, selectAnswer, isAnswered, selectedAnswer, goToNextQuestion, isFinished, reset, score, progress, currentQuestionIndex } = useQuiz({
