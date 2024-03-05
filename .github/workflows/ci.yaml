@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm i
+
+      # - name: Run linters
+      #   run: pnpm lint
+
+      # - name: Run unit test
+      #   run: pnpm test:unit
+
+      - name: Build the app
+        run: pnpm build
