@@ -6,8 +6,15 @@ import { getHttpStatus } from './http-status.services';
 export { getHttpCodeQuestions, getHttpNameQuestions, getHttpQuestions };
 
 function getHttpQuestions({ questionCount }: { questionCount: number }): Question[] {
-  const codeQuestions = getHttpCodeQuestions({ questionCount });
-  const nameQuestions = getHttpNameQuestions({ questionCount });
+  const httpStatuses = getHttpStatus();
+
+  const [statusForCodeQuestions, statusForNameQuestions] = _.chain(httpStatuses)
+    .shuffle()
+    .chunk(questionCount / 2)
+    .value();
+
+  const codeQuestions = getHttpCodeQuestions({ questionCount, httpStatusesQuestionPool: statusForCodeQuestions });
+  const nameQuestions = getHttpNameQuestions({ questionCount, httpStatusesQuestionPool: statusForNameQuestions });
 
   return _.chain([...codeQuestions, ...nameQuestions])
     .shuffle()
@@ -15,10 +22,16 @@ function getHttpQuestions({ questionCount }: { questionCount: number }): Questio
     .value();
 }
 
-function getHttpCodeQuestions({ questionCount }: { questionCount: number }): Question[] {
-  const httpStatuses = getHttpStatus();
-
-  const httpStatusForQuestions = _.sampleSize(httpStatuses, questionCount);
+function getHttpCodeQuestions({
+  questionCount,
+  httpStatuses = getHttpStatus(),
+  httpStatusesQuestionPool = httpStatuses,
+}: {
+  questionCount: number;
+  httpStatuses?: { code: number; name: string; description: string }[];
+  httpStatusesQuestionPool?: { code: number; name: string; description: string }[];
+}): Question[] {
+  const httpStatusForQuestions = _.sampleSize(httpStatusesQuestionPool, questionCount);
 
   return httpStatusForQuestions.map((httpStatus) => {
     const correctAnswer = {
@@ -45,10 +58,16 @@ function getHttpCodeQuestions({ questionCount }: { questionCount: number }): Que
   });
 }
 
-function getHttpNameQuestions({ questionCount }: { questionCount: number }): Question[] {
-  const httpStatuses = getHttpStatus();
-
-  const httpStatusForQuestions = _.sampleSize(httpStatuses, questionCount);
+function getHttpNameQuestions({
+  questionCount,
+  httpStatuses = getHttpStatus(),
+  httpStatusesQuestionPool = httpStatuses,
+}: {
+  questionCount: number;
+  httpStatuses?: { code: number; name: string; description: string }[];
+  httpStatusesQuestionPool?: { code: number; name: string; description: string }[];
+}): Question[] {
+  const httpStatusForQuestions = _.sampleSize(httpStatusesQuestionPool, questionCount);
 
   return httpStatusForQuestions.map((httpStatus) => {
     const correctAnswer = {
