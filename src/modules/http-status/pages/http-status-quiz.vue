@@ -9,7 +9,7 @@ defineOgImageComponent('base-og-image', {
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center">
+  <UContainer class="flex flex-col items-center justify-center">
     <quiz :questions-generator="getHttpQuestions" />
-  </div>
+  </UContainer>
 </template>
