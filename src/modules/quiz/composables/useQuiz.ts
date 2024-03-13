@@ -1,10 +1,13 @@
 import { get } from '@vueuse/core';
-import type { Question, QuestionAnswer } from '../quiz.types';
+import type { Question, QuestionAnswer, QuestionsGenerator } from '../quiz.types';
 
 export { useQuiz };
 
-function useQuiz({ questionsBuilder: createQuestions, questionCount = 10 }: { questionsBuilder: (args: { questionCount: number }) => Question[]; questionCount?: MaybeRef<number> }) {
-  const questions = ref<Question[]>(createQuestions({ questionCount: get(questionCount) }));
+function useQuiz({ questionsGenerator, questionCount: rawQuestionCount = 10 }: { questionsGenerator: MaybeRef<QuestionsGenerator>; questionCount?: MaybeRef<number> }) {
+  const createQuestions = get(questionsGenerator);
+  const questionCount = get(rawQuestionCount);
+
+  const questions = ref<Question[]>(createQuestions({ questionCount }));
   const currentQuestionIndex = ref(0);
   const currentQuestion = computed<Question>(() => questions.value[currentQuestionIndex.value]);
   const selectedAnswer = ref<QuestionAnswer | undefined>(undefined);
@@ -32,7 +35,7 @@ function useQuiz({ questionsBuilder: createQuestions, questionCount = 10 }: { qu
   };
 
   const reset = () => {
-    questions.value = createQuestions({ questionCount: get(questionCount) });
+    questions.value = createQuestions({ questionCount });
     currentQuestionIndex.value = 0;
     selectedAnswer.value = undefined;
     state.value = 'answering';
