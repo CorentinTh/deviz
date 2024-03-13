@@ -1,4 +1,10 @@
 <script setup lang="ts">
+defineOgImageComponent('base-og-image', {
+  title: 'Deviz - Online quizzes for devs',
+  description: 'Test your knowledge of dev stuff with these online quizzes.',
+  icon: 'i-tabler-terminal-2',
+});
+
 const quizzes = [
   {
     title: 'HTTP Status Quiz',
