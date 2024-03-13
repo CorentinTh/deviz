@@ -13,3 +13,5 @@ export type Question = {
     description: string;
   };
 };
+
+export type QuestionsGenerator = (options: { questionCount: number }) => Question[];

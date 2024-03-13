@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: ['src/modules/quiz', 'src/modules/http-status'],
+  extends: ['src/modules/quiz', 'src/modules/http-status', 'src/modules/regex'],
 
   site: {
     url: 'https://deviz.corentin.tech',
