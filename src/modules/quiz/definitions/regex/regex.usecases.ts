@@ -5,6 +5,7 @@ export { getRegexQuestions };
 
 const getRegexQuestions = createQuestionGenerator({
   elements: regexTokens,
+  areElementsEqual: (a, b) => a.token === b.token,
   questionsCreators: [
     {
       createAnswer: ({ element }) => ({
