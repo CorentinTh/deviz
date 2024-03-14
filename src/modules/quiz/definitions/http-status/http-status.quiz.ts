@@ -6,6 +6,6 @@ export const httpStatusQuiz = defineQuiz({
   description: 'Test your knowledge of HTTP status codes and their meaning.',
   questionsGenerator: getHttpQuestions,
   icon: 'i-tabler-server',
-  difficulty: 'medium',
+  difficulty: 'hard',
   slug: 'http-status',
 });
