@@ -20,7 +20,7 @@
           :onClick="() => selectAnswer({ answer })"
           :disabled="isAnswered"
           size="lg"
-          class="transition"
+          class="transition text-left"
           :color="isAnswered ? (answer.isCorrect ? 'green' : selectedAnswer === answer ? 'red' : 'primary') : 'primary'"
         >
           {{ isAnswered ? answer.explanation ?? answer.label : answer.label }}
