@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import type { Question } from '../quiz/quiz.types';
-import { takeUniqueRandoms } from '../shared/random.models';
+import type { Question } from '../../../quiz/quiz.types';
+import { takeUniqueRandoms } from '../../../shared/random.models';
 import { getHttpStatus } from './http-status.services';
 
 export { getHttpCodeQuestions, getHttpNameQuestions, getHttpQuestions };

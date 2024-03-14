@@ -1,3 +1,5 @@
+import type { defineQuiz } from './quiz.usecases';
+
 export type QuestionAnswer = {
   label: string;
   isCorrect: boolean;
@@ -15,3 +17,7 @@ export type Question = {
 };
 
 export type QuestionsGenerator = (options: { questionCount: number }) => Question[];
+
+export type QuizDefinition = ReturnType<typeof defineQuiz>;
+
+export type QuizDifficulty = 'easy' | 'medium' | 'hard';

@@ -1,17 +1,14 @@
 <script setup lang="ts">
-useHead({
-  title: 'Deviz - Developer Quiz Online',
-  meta: [
-    {
-      name: 'description',
-      content: 'Test your knowledge of HTTP status codes with this quiz.',
-    },
-    { name: 'author', content: 'Corentin Thomasset' },
-    {
-      name: 'keywords',
-      content: 'http, status, code, quiz, test, knowledge, developer, deviz',
-    },
-  ],
+useSeoMeta({
+  title: 'Deviz - Online quizzes for devs',
+  description: 'Test your knowledge of dev stuff with these online quizzes.',
+  author: 'Corentin Thomasset',
+});
+
+defineOgImageComponent('base-og-image', {
+  title: 'Deviz - Online quizzes for devs',
+  description: 'Test your knowledge of dev stuff with these online quizzes.',
+  icon: 'i-tabler-terminal-2',
 });
 </script>
 
@@ -19,6 +16,6 @@ useHead({
   <NuxtLayout>
     <NuxtPage />
     <UNotifications />
-    <CommandPalette />
+    <!-- <CommandPalette /> -->
   </NuxtLayout>
 </template>
