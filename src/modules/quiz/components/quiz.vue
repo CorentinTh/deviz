@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center max-w-md text-center mt-12">
+  <div class="flex flex-col items-center max-w-md w-full text-center mt-12">
     <div v-if="isFinished">
       <score-panel :score="score" :total="questionCount" />
 
