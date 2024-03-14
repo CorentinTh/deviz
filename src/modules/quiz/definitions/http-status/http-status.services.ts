@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import { codesByCategories } from './http-status.constants';
 
-export { getHttpStatus };
+export { getHttpStatuses };
 
-function getHttpStatus() {
+function getHttpStatuses() {
   return _.chain(codesByCategories)
     .map('codes')
     .flatten()

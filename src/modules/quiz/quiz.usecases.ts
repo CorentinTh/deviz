@@ -32,25 +32,31 @@ function defineQuiz({
 
 function createQuestionGenerator<DataSource>({
   elements,
-  createAnswer,
-  createQuestion,
+  questionsCreators,
   areElementsEqual = (a, b) => a === b,
 }: {
   elements: DataSource[];
-  createAnswer: (args: { element: DataSource }) => Omit<QuestionAnswer, 'isCorrect'>;
-  createQuestion: (args: { element: DataSource }) => Omit<Question, 'answers'>;
+
   areElementsEqual?: (a: DataSource, b: DataSource) => boolean;
+  questionsCreators: {
+    createAnswer: (args: { element: DataSource }) => Omit<QuestionAnswer, 'isCorrect'>;
+    createQuestion: (args: { element: DataSource }) => Omit<Question, 'answers'>;
+  }[];
 }): QuestionsGenerator {
+  const answerCount = 4;
+
   return ({ questionCount }) => {
     const elementsForQuestions = _.sampleSize(elements, questionCount);
 
     return elementsForQuestions.map((element) => {
+      const { createAnswer, createQuestion } = _.sample(questionsCreators)!;
+
       const correctAnswer = {
         ...createAnswer({ element }),
         isCorrect: true,
       };
 
-      const wrongAnswers = takeUniqueRandoms(elements, { count: 3, excludeBy: (e) => areElementsEqual(e, element) }).map((e) => ({
+      const wrongAnswers = takeUniqueRandoms(elements, { count: answerCount - 1, excludeBy: (e) => areElementsEqual(e, element) }).map((e) => ({
         ...createAnswer({ element: e }),
         isCorrect: false,
       }));
